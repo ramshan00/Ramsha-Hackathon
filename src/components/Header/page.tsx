@@ -27,9 +27,11 @@ const Header = () => {
           </div>
 
           {/* Avion Title */}
+          <Link href="/">
           <h1 className="text-[#22202E] text-2xl font-semibold text-left lg:text-center">
             Avion
           </h1>
+            </Link>
 
           {/* Right: Cart and Profile icons for large screens */}
           <div className="flex gap-3 text-xl lg:flex-1 justify-end">
