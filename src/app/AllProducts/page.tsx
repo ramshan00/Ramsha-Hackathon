@@ -1,55 +1,76 @@
-import { Button } from '@/components/ui/button';
-import ProductCard from './productCard';
-import Navbar from './header';
-import Link from 'next/link';
+"use client";
 
-const products = [
-  { title: 'The Dandy chair', price: '£250', imageUrl: '/img1.png' },
-  { title: 'Rustic vase set', price: '£180', imageUrl: '/img2.png' },
-  { title: 'The silky vase', price: '£120', imageUrl: '/img3.png' },
-  { title: 'The Lucky lamp', price: '£350', imageUrl: '/img4.png' },
-  { title: 'The Dandy chair', price: '£400', imageUrl: '/pro1.png' },
-  { title: 'Rustic vase set', price: '£300', imageUrl: '/pro2.png' },
-  { title: 'The silky vase', price: '£280', imageUrl: '/pro3.png' },
-  { title: 'The Lucky lamp', price: '£200', imageUrl: '/pro4.png' },
+import { useEffect, useState } from "react";
+import { client } from "@/sanity/lib/client";
+import Image from "next/image";
+import Link from "next/link";
+import Navbar from "./header";
 
-];
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+  currentSlug: string;
+}
 
-export default function Home() {
+export default function Products() {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const query = `*[_type == "product"]{
+        _id,
+        name,
+        price,
+        tags,
+        "imageUrl": image.asset->url,
+        currentSlug
+      }`;
+
+      const products = await client.fetch(query);
+      setProducts(products);
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
-    <>
-    <header>
-      <Navbar />
-    </header>
-    <div className="space-y-12 py-10">
-        {/* Upper Section: 4 Cards */}
-        <div className="flex justify-center gap-8 flex-wrap">
-          {products.slice(0, 4).map((product, index) => (
-            <ProductCard key={index} title={product.title} price={product.price} imageUrl={product.imageUrl} />
+    <div className="bg-gray-50 min-h-screen">
+      <header>
+        <Navbar />
+      </header>
+      <div className="container mx-auto px-4 mt-8">
+        {/* Grid Container */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+          {products.map((product) => (
+            <Link
+              key={product._id}
+              href={`/AllProducts/${product.currentSlug}`}
+              className="relative block group w-full max-w-[305px] h-[462px] rounded-lg overflow-hidden"
+            >
+              {/* Product Image */}
+              <div className="relative w-full h-[75%] bg-gray-200">
+                <Image
+                  src={product.imageUrl}
+                  alt={product.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              {/* Product Details */}
+              <div className="p-4 flex flex-col gap-2">
+                <h4 className="text-xl font-semibold text-[#2A254B]">
+                  {product.name}
+                </h4>
+                <p className="text-lg font-medium text-[#2A254B]">
+                  ${product.price}
+                </p>
+              </div>
+            </Link>
           ))}
         </div>
-
-        {/* Middle Section: Different Image Layout */}
-        <div className="flex justify-center gap-8 flex-wrap">
-          {products.slice(4, 8).map((product, index) => (
-            <ProductCard key={index} title={product.title} price={product.price} imageUrl={product.imageUrl} />
-          ))}
-        </div>
-
-        {/* Lower Section: 4 Cards */}
-        <div className="flex justify-center gap-8 flex-wrap">
-          {products.slice(0, 4).map((product, index) => (
-            <ProductCard key={index} title={product.title} price={product.price} imageUrl={product.imageUrl} />
-          ))}
-        </div>
-
-        {/* button */}
-        <Link href="/ProductListing" className="flex justify-center mt-12">
-          <button className="px-8 py-3 bg-gray-200 text-[#2A254B] font-satoshi text-lg rounded-lg">
-            View Product Details
-          </button>
-        </Link>
       </div>
-      </>
+    </div>
   );
 }

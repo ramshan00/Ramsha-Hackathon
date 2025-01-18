@@ -2,9 +2,7 @@ import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 import { IoSearch } from "react-icons/io5";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { Button } from "@/components/ui/button"; // ShadCN Button
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"; // ShadCN Sheet
-import Banner from '../../components/Banner';
+
 
 
 export default function Navbar() {

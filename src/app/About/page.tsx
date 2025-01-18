@@ -3,7 +3,6 @@ import React from 'react';
 import Features from '../../components/Features';
 import SignUpSection from '../../components/Signup';
 import Navbar from './Navbar';
-import Link from 'next/link';
 import Image from 'next/image';
 
 export default function About() {
@@ -51,7 +50,7 @@ export default function About() {
         </div>
         <div className="w-full md:w-1/2 md:h-[640px] h-full py-4 mt-8 md:mt-0 md:pl-0 bg-[#f9f9f9]">
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4 mx-4 md:mx-16 md:mt-16">
-                Our service isn &apos;t just personal, it's actually hyper personally exquisite
+                Our service isn &apos;t just personal, It doesn &apos;t actually hyper personally exquisite
             </h2>
             <p className="text-gray-600 mb-4 mx-4 md:mx-16">
                 When we started Avion, the idea was simple. Make high quality furniture affordable and available for the mass market.

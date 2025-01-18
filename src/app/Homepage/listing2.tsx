@@ -47,7 +47,7 @@ const ListingsTwo = () => {
         {/* Large Card */}
         <div className="col-span-2">
           <ProductCard
-            imageSrc="/Large.png"
+            imageSrc="/sofa.png"
             title="The Poplar Suede Sofa"
             price="980"
             large
