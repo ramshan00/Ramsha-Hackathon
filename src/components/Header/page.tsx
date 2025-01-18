@@ -44,6 +44,8 @@ const Header = () => {
             </h1>
           </Link>
           
+
+          {/* Right: Cart and Profile icons for large screens */}
           <div className="flex gap-3 text-xl lg:flex-1 justify-end">
             <Link href="/ShoppingBaskets">
               <MdOutlineShoppingCart />

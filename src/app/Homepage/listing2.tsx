@@ -8,21 +8,15 @@ interface ProductCardProps {
   large?: boolean;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ imageSrc, title, price, large = false }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ imageSrc, title, price}) => {
   return (
-    <div
-      className={`flex flex-col items-start gap-4 ${
-        large ? 'h-[400px]' : 'h-[400px]'
-      } relative`}
-    >
+    <div className= "flex flex-col items-start gap-4 h-[400px] relative">
       {/* Image Section */}
-      <div
- className={`relative ${large ? 'md:h-[300px]' : 'md:h-[300px]'} w-full bg-gray-100 sm:hidden md:block`}
-  >
+      <div className= "relative md:h-[300px] w-full bg-gray-100 hidden md:block">
         <Image src={imageSrc} alt={title} fill className="object-cover" />
       </div>
       {/* Text Section */}
-      <div className="flex flex-col items-start gap-2 sm:hidden md:block">
+      <div className="flex flex-col items-start gap-2 md:block">
         <h4 className="font-clash text-[20px] font-normal text-[#2A254B] leading-[140%]">
           {title}
         </h4>
@@ -38,7 +32,7 @@ const ListingsTwo = () => {
   return (
     <div className="w-full max-w-[1440px] mx-auto px-4 py-8 bg-white">
       {/* Section Title */}
-      <h2 className="font-clash text-[32px] font-normal text-[#2A254B] leading-[140%] mb-6">
+      <h2 className="text-[32px] font-normal text-[#2A254B] leading-[140%] mb-6">
         Our Popular Products
       </h2>
 
@@ -65,7 +59,7 @@ const ListingsTwo = () => {
 
       {/* View More Button */}
       <div className="mt-8 flex justify-center">
-        <Button className="px-8 py-4 bg-gray-100 font-satoshi text-[16px] font-normal text-[#2A254B]">
+        <Button className="px-8 py-4 bg-gray-100 text-[16px] font-normal text-[#2A254B]">
           View collection
         </Button>
       </div>

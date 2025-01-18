@@ -1,10 +1,12 @@
+
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 
-const Hero = () => {
+
+export default function HeroSection() {
   return (
-    <div className='flex items-center justify-center md:py-16 text-white font-clashDisplay'>
+  <div className='flex items-center justify-center md:py-16 text-white font-clashDisplay'>
       <div className='flex-col px-10 w-full max-w-3xl bg-[#2A254B] h-[502px] md:h-[450px] py-20 '>
         <h2 className='text-2xl'>
             The furniture brand for the<br />
@@ -33,4 +35,3 @@ const Hero = () => {
   )
 }
 
-export default Hero
