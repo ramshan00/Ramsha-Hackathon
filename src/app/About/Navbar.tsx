@@ -5,8 +5,8 @@ import { CgProfile } from "react-icons/cg";
 import Banner from '../../components/Banner';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import SearchBar from '@/components/SearchBar';
-import { fetchCategories } from "../../../../utils/fetchCategories"; 
-import { useCart } from "../../../../context/Cart_Context";
+import { fetchCategories } from "../../../utils/fetchCategories"; 
+import { useCart } from "../../../context/Cart_Context";
 
 interface Category {
   _id: string;
