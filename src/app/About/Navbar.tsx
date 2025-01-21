@@ -40,7 +40,7 @@ export default function Navbar() {
       {/* Top Bar */}
       <div className="flex justify-between items-center py-4 px-8">
         {/* Brand Name */}
-        <div className="text-2xl font-bold text-[#22202E]">
+        <div className="hidden lg:flex text-2xl font-bold text-[#22202E]">
           <Link href="/">Avion</Link>
         </div>
 
@@ -55,7 +55,7 @@ export default function Navbar() {
         {/* Right: Cart, Profile, Search icons for large screens */}
         <div className="flex gap-3 text-xl justify-end">
           
-        <div className="relative">
+        <div className="relative hidden lg:flex">
         <SearchBar /> 
           </div>
 
@@ -87,6 +87,13 @@ export default function Navbar() {
           </SheetTrigger>
           <SheetContent>
             <nav className="flex flex-col gap-4 text-lg text-[#726E8D]">
+              <Link
+              href="/"
+              className="hover:text-[#5a526c]"
+            >
+              Home
+            </Link>
+              
           <Link
             href="/AllProducts"
             className="hover:text-[#5a526c]"
