@@ -4,6 +4,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import Banner from '../../components/Banner';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import SearchBar from '@/components/SearchBar';
 
 export default function Navbar() {
   return (
@@ -27,9 +28,10 @@ export default function Navbar() {
 
         {/* Right: Cart, Profile, Search icons for large screens */}
         <div className="flex gap-3 text-xl justify-end">
-        <Link href="/">
-            < IoSearch/>
-         </Link>
+        <div className="relative">
+          <IoSearch className="text-2xl cursor-pointer" />
+        <SearchBar /> 
+          </div>
         <Link href="/ShoppingBaskets">
             <MdOutlineShoppingCart />
          </Link>

@@ -12,7 +12,7 @@ export default function HeroSection() {
             The furniture brand for the<br />
             fututre, with timeless designs
         </h2>
-        <Button className='hidden md:flex bg-opacity-50 bg-slate-400 hover:bg-slate-400 rounded-none py-6 px-6 mt-8 mb-28'>
+        <Button className='hidden md:flex sm:bg-slate-50 sm:text-black bg-opacity-50 bg-slate-400 hover:bg-slate-400 rounded-none py-6 px-6 mt-8 mb-28'>
             View collection
         </Button>
         <h2 className='mt-20 md:mt-0'>

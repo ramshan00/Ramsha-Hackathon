@@ -1,6 +1,6 @@
 export interface ProductData {
+    category?:string;
     _id?: string;
-    currentSlug: string;
     name: string;
     price: number;
     description: string;

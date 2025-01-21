@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState,  } from "react";
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,29 +11,32 @@ interface Product {
   name: string;
   price: number;
   imageUrl: string;
-  currentSlug: string;
 }
 
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const query = `*[_type == "product"]{
-        _id,
-        name,
-        price,
-        tags,
-        "imageUrl": image.asset->url,
-        currentSlug
-      }`;
-
-      const products = await client.fetch(query);
-      setProducts(products);
+      try {
+        const query = `*[_type == "product"]{ 
+        _id, 
+        name, 
+        price, 
+        "imageUrl": 
+            image.asset->url 
+        }`;
+        const products = await client.fetch(query);
+        setProducts(products);
+      } catch (error) {
+        setError(error as Error);
+      }
     };
-
     fetchProducts();
   }, []);
+
+
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -46,7 +49,7 @@ export default function Products() {
           {products.map((product) => (
             <Link
               key={product._id}
-              href={`/AllProducts/${product.currentSlug}`}
+              href={`/AllProducts/${product._id}`}
               className="relative block group w-full max-w-[305px] h-[462px] rounded-lg overflow-hidden"
             >
               {/* Product Image */}
@@ -74,3 +77,5 @@ export default function Products() {
     </div>
   );
 }
+
+
