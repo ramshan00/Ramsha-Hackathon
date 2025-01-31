@@ -5,7 +5,6 @@ import { useCart } from "../../../context/Cart_Context"; // Assuming the cart co
 import React from "react";
 import AnimatedModal from "@/components/OrderConfirmation"; // Adjust the path if needed
 import Header from "@/components/Header/page";
-import Link from "next/link";
 
 
 
