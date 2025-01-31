@@ -15,7 +15,7 @@ interface Category {
 }
 
 const Header = () => {
-  const { state } = useCart();// cartCount from context
+  const { state } = useCart();
   const [categories, setCategories] = useState<Category[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
