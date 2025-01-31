@@ -15,7 +15,7 @@ interface Category {
 }
 
 const Header = () => {
-  const { cartCount } = useCart(); // cartCount from context
+  const { state } = useCart();// cartCount from context
   const [categories, setCategories] = useState<Category[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,7 +37,7 @@ const Header = () => {
   return (
     <header className="max-w-[1440px] h-[132px] flex flex-col items-center bg-white px-10 lg:w-full mx-auto">
       {/* Top Bar */}
-      <div className="border-b-[0.5px] border-[#0000004f] h-1/2 w-full mx-auto flex justify-between items-center">
+      <div className="border-b-[0.5px] border-[#0000004f] h-1/2 w-full mx-auto flex justify-between items-center sticky top-0 md:static">
         {/* Left: Search icon */}
         <div className="flex items-center gap-3 lg:flex-1">
           <div className="relative">
@@ -58,12 +58,13 @@ const Header = () => {
           {/* Shopping Cart Icon */}
           <Link href="/ShoppingBaskets" className="relative">
             <MdOutlineShoppingCart size={24} />
-            {/* Badge for cart quantity */}
-            {cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                {cartCount}
-              </span>
-            )}
+            <div
+          className={`bg-slate-900 text-center h-5 rounded-full text-white text-xs absolute -top-2 left-4 flex items-center justify-center ${
+            state.items.length > 9 ? 'w-6 px-1' : 'w-5'
+          }`}
+        >
+          {state.items.length}
+        </div>
           </Link>
 
           {/* Profile Icon */}

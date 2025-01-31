@@ -8,5 +8,5 @@ export const client = createClient({
   dataset: 'production',        // Or your dataset name
   apiVersion: '2025-01-13',     // Today's date or latest API version
   useCdn: false,                // Disable CDN for real-time updates
-  token:'skH7s4DSF59Xot3SSDRNON9BHGBa0ka2ks2VzsNMZAsOs058Q27gmHvc2NQKFI6mRuvoKi4t9c1ldMPzDxjdH2wAIJhHqzQ72XmZE5crZYfkpI6Ue96O3ETPIj1RRuxCDqjyQuHidejB8HBZC1lI9HsV5OJa1cKt6M4e3vcH8QTHJGsP6Gw8',
+  token:'skJSE31NmgagKxvzc7OOhlkYyUoZYyyKXRa8I80bGxBkBmSKXlh3rxMWJg4yHAj0TQJKtMxUlOe92GIpCfA1aQLkXEjBmKWMo0FjkrIb7qOA4ye4CY67mWIVZI9DtZ9LtVXr9lplYWmJqCitbqa0YoAHEFytGAoOMXslbuI9at5NPXmd3jbn',
 });

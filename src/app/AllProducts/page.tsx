@@ -67,7 +67,7 @@ export default function Products() {
                   {product.name}
                 </h4>
                 <p className="text-lg font-medium text-[#2A254B]">
-                  ${product.price}
+                &#163;{product.price}
                 </p>
               </div>
             </Link>

@@ -8,7 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Header/page";
 import SignUpSection from "@/components/Signup";
-import { ProductData } from "@/app/types/ProductType";
+import { ProductData } from "@/types/ProductType";
 
 interface Category {
     _id: string; // Unique identifier for the category

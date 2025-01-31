@@ -9,18 +9,48 @@ import { Button } from "../../../components/ui/button";
 import Image from "next/image";
 import Navbar from "./navbar";
 import SignUpSection from "@/components/Signup";
-import { ProductData } from "@/app/types/ProductType";
+import { ProductData } from "@/types/ProductType";
 import { useCart } from "../../../../context/Cart_Context";
 
 
 const ProductPage = () => {
-  const { addToCart } = useCart();
+  const { dispatch } = useCart();
+
+  const handleAddToCart = () => {
+    if (ProductDetails) {
+        // Extract and format necessary details
+        const itemId = Number(ProductDetails._id); // Convert _id to a number (if necessary)
+        
+        // Dispatch ADD_TO_CART action with the formatted payload
+        dispatch({
+            type: 'ADD_TO_CART',
+            payload: {
+                _id: itemId, // Use _id as id
+                name: ProductDetails.name,
+                description: ProductDetails.description,
+                price: ProductDetails.price,
+                image: ProductDetails.image.asset.url, // Access the image URL properly
+                quantity: quantity, // Use the current quantity from the state
+            },
+        });
+    } else {
+        console.error('Product details are not available!');
+    }
+};
   const params = useParams(); // Getting the route parameter
   const productId = params.id;
   const [ProductDetails, setProductDetails] = useState<ProductData | null>(null);
   const [FeaturedProduct, setFeaturedProduct] = useState<ProductData[] | null>(null);
   const [quantity, setQuantity] = useState(1);
 
+  const handleQuantityChange = (event: { target: { value: string; }; }) => {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value > 0) {
+        setQuantity(value);
+    } else {
+        setQuantity(1); // Prevent negative or invalid inputs
+    }
+};
 
   // Fetch product data from Sanity
   useEffect(() => {
@@ -61,7 +91,7 @@ const ProductPage = () => {
       try {
         const features = await client.fetch(
           `*[_type == "product"][2..5]{
-            id,
+            _id,
             name,
             price,
             description,
@@ -81,30 +111,7 @@ const ProductPage = () => {
     fetchProducts();
   }, []);
 
-  // Increment and Decrement quantity
-  const handleIncrement = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
-  };
 
-  const handleDecrement = () => {
-    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
-  };
-
-  const handleAddToCart = () => {
-    if (ProductDetails) {
-      const itemId = Number(ProductDetails._id); // Use _id from ProductDetails
-      addToCart({
-        id: itemId, // Ensure _id is used instead of id
-        name: ProductDetails.name,
-        description: ProductDetails.description,
-        price: ProductDetails.price,
-        image: ProductDetails.image.asset.url, // Accessing image URL properly
-        quantity: quantity, // Use the current quantity state
-      });
-    }
-  };
-  
-  
   return (
     <div>
       <Navbar />
@@ -151,30 +158,31 @@ const ProductPage = () => {
 </div>
               {/* Quantity */}
               <div className="flex items-center gap-4 mt-6">
-                <button
-                  onClick={handleDecrement}
-                  className="w-8 h-8 bg-gray-800 text-white rounded-full"
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  value={quantity}
-                  readOnly
-                  className="w-12 text-center border border-gray-300 rounded"
-                />
-                <button
-                  onClick={handleIncrement}
-                  className="w-8 h-8 bg-gray-800 text-white rounded-full"
-                >
-                  +
-                </button>
+              <button
+                onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
+                className="w-12 h-full text-black hover:bg-gray-100 flex justify-center items-center"
+              >
+                 -
+              </button>
+              <input
+                type="number"
+                value={quantity}
+                min="1"
+                onChange={handleQuantityChange}
+                className="w-16 h-full text-center outline-none border-none appearance-none [-moz-appearance:none] [-webkit-appearance:none]"
+              />
+              <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="w-12 h-full text-black hover:bg-gray-100 flex justify-center items-center"
+              >
+               +
+              </button>
               </div>
 
               {/* Add to Cart */}
               <div className="mt-6 justify-end">
                 <Link href="/ShoppingBaskets">
-                <Button  onClick={handleAddToCart} className="mt-4 bg-gray-800 hover:bg-gray-400 text-white px-6 py-2 rounded-md">
+                <Button  onClick= {handleAddToCart} className="mt-4 bg-gray-800 hover:bg-gray-400 text-white px-6 py-2 rounded-md">
                   Add to Cart
                   </Button>
                   </Link>
@@ -183,7 +191,6 @@ const ProductPage = () => {
           </div>
         )}
 
-     {/* Featured Products */}
 
      {/* Featured Products */}
 <div className="mt-12">
@@ -203,7 +210,7 @@ const ProductPage = () => {
           height={300}
           className="object-cover rounded-lg"
         />
-        <h3 className="text-lg font-semibold mt-4 text-center">{item.name}</h3>
+        <h2 className="text-lg font-semibold mt-4 text-center">{item.name}</h2>
         <Link href={`/AllProducts/${item._id}`}>
           <Button className="mt-4 bg-[#2A254B] hover:bg-[#2A254B] text-white w-full">
             View Details

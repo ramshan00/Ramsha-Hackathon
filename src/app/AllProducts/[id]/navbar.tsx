@@ -12,7 +12,7 @@ interface Category {
 }
 
 export default function Navbar() {
-    const { cartCount } = useCart(); // cartCount from context
+  const { state } = useCart(); 
   const [categories, setCategories] = useState<Category[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -73,11 +73,13 @@ export default function Navbar() {
         {/* Shopping Cart Icon */}
         <Link href="/ShoppingBaskets" className="relative">
           <MdOutlineShoppingCart size={24} />
-          {cartCount > 0 && (
-            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-              {cartCount}
-            </span>
-          )}
+          <div
+          className={`bg-slate-900 text-center h-5 rounded-full text-white text-xs absolute -top-2 left-4 flex items-center justify-center ${
+            state.items.length > 9 ? 'w-6 px-1' : 'w-5'
+          }`}
+        >
+          {state.items.length}
+        </div>
         </Link>
   
         {/* Profile Icon */}
@@ -129,11 +131,13 @@ export default function Navbar() {
             <SearchBar />
             <Link href="/ShoppingBaskets" className="relative flex items-center">
               <MdOutlineShoppingCart size={24} />
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
+              <div
+          className={`bg-slate-900 text-center h-5 rounded-full text-white text-xs absolute -top-2 left-4 flex items-center justify-center ${
+            state.items.length > 9 ? 'w-6 px-1' : 'w-5'
+          }`}
+        >
+          {state.items.length}
+        </div>
             </Link>
             <Link href="/About" className="flex items-center">
               <CgProfile size={24} />

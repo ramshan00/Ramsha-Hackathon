@@ -10,19 +10,25 @@ import Image from "next/image";
 
 export default function ShoppingBasket() {
   const router = useRouter();
-  const { cart, removeFromCart } = useCart();
-// Log cart to ensure the items contain a valid `id`
-console.log(cart);
-  const handleRemove = (id: number) => {
-    console.log(`Removing item with id: ${id}`);  // Debugg
-    removeFromCart(id); // Ensure this method properly handles removing the item by its id
-  };
+    const { state: { items }, dispatch } = useCart();
+  
+    const handleRemove = (_id: number) => {
+      dispatch({ type: 'REMOVE_FROM_CART', payload: { _id } });
+    };
+  
+    const handleQuantityChange = (_id: number, quantity: number) => {
+      if (quantity > 0) {
+        dispatch({ type: 'UPDATE_QUANTITY', payload: { _id, quantity } });
+      }
+    };
+  
+    const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const handleCheckout = () => {
-    if (cart.length === 0) {
+    if ( items.length === 0) {
       alert("Your cart is empty. Please add items before proceeding to checkout.");
     } else {
-      router.push("/checkout"); // Redirect to checkout page
+      router.push("/Checkout"); // Redirect to checkout page
     }
   };
 
@@ -33,7 +39,7 @@ console.log(cart);
         {/* Cart Header */}
         <h1 className="text-4xl font-extrabold text-gray-900 mb-6">Your shopping cart</h1>
 
-        {cart.length === 0 ? (
+        {items.length === 0 ? (
           <div className="text-center text-gray-500 text-lg mt-12">
             <div className="flex justify-center items-center flex-col">
               <ShoppingCart size={80} className="text-gray-400 mb-4" />
@@ -55,9 +61,9 @@ console.log(cart);
                 <div className="md:text-center md:block hidden">Total</div>
               </div>
 
-              {cart.map((item) => {
+              {items.map((item) => {
                 return (
-                  <div key={item.id} className="grid md:grid-cols-[2fr,1fr,1fr] gap-4 py-8 items-center border-b">
+                  <div key={item._id} className="grid md:grid-cols-[2fr,1fr,1fr] gap-4 py-8 items-center border-b">
                     <div className="flex gap-6">
                       <div>
                         <Image
@@ -74,19 +80,31 @@ console.log(cart);
                         <p className="text-base">&#163; {item.price}</p>
                       </div>
                     </div>
-                    <div className="text-center">
-                      <input
-                        type="number"
-                        value={item.quantity}
-                        min={1}
-                        className="w-14 h-8 text-center border rounded-md"
-                        onChange={(e) => console.log("Update Quantity", e.target.value)} 
-                      />
-                    </div>
+                    <div className="items-center">
+                    <button
+                      className="px-2 border border-gray-300 rounded-l-md"
+                      onClick={() => handleQuantityChange(item._id, item.quantity - 1)}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      value={item.quantity}
+                      min="1"
+                      className="w-12 text-center border-y border-gray-300"
+                      onChange={(e) => handleQuantityChange(item._id, +e.target.value)}
+                    />
+                    <button
+                      className="px-2 border border-gray-300 rounded-r-md"
+                      onClick={() => handleQuantityChange(item._id, item.quantity + 1)}
+                    >
+                      +
+                    </button>
+                  </div>
                     <div className="flex justify-between items-center">
                       <span>&#163; {(item.price * item.quantity).toFixed(2)}</span>
                       <Button
-                        onClick={() => handleRemove(item.id)} 
+                        onClick={() => handleRemove(item._id)} 
                         className="text-[#c23535] ml-2"
                       >
                         <Trash2 size={24} />
@@ -102,7 +120,7 @@ console.log(cart);
               <div className="flex justify-between w-full max-w-xs">
                 <span className="text-gray-500">Subtotal</span>
                 <p className="text-md sm:text-base font-semibold text-gray-800">
-                  &#163; {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}
+                  &#163; {total}
                 </p>
               </div>
               <div className="text-sm text-gray-600">

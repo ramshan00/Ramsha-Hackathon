@@ -29,10 +29,13 @@
     "react-icons": "^5.4.0",
     "sanity": "^3.69.0",
     "sharp": "^0.33.5",
+    "shipengine": "^1.0.7",
     "slugify": "^1.6.6",
     "styled-components": "^6.1.14",
+    "swiper": "^11.2.1",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^11.0.5"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
