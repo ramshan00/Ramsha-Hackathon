@@ -3,8 +3,8 @@
 import { useState } from "react"; // Import React hooks
 import { useCart } from "../../../context/Cart_Context"; // Assuming the cart context is correctly set
 import React from "react";
-import AnimatedModal from "@/components/OrderConfirmation"; // Adjust the path if needed
-import Header from "@/components/Header/page";
+import AnimatedModal from "../../components/OrderConfirmation"; // Adjust the path if needed
+import Header from "../../components/Header/page";
 
 
 

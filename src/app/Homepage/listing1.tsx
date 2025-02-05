@@ -2,10 +2,10 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from "react";
-import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
+import { client } from "../../sanity/lib/client";
+import { urlFor } from "../../sanity/lib/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 import { ProductData } from '../../types/ProductType';
 
 export default function Listings() {

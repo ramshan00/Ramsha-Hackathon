@@ -4,7 +4,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { fetchCategories } from "../../../../utils/fetchCategories"; // Ensure this path is correct
 import { useCart } from "../../../../context/Cart_Context";
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "../../../components/SearchBar";
 
 interface Category {
   _id: string;

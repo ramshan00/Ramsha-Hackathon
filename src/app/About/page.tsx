@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "../../components/ui/button";
 import React from 'react';
 import Features from '../../components/Features';
 import SignUpSection from '../../components/Signup';

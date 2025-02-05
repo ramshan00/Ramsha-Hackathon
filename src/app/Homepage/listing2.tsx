@@ -1,6 +1,6 @@
 "use client";
-import { urlFor } from "@/sanity/lib/image";
-import { client } from "@/sanity/lib/client";
+import { urlFor } from "../../sanity/lib/image";
+import { client } from "../../sanity/lib/client";
 import { ProductData } from '../../types/ProductType';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -10,7 +10,7 @@ import { Autoplay } from "swiper/modules";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 
 const PopularProduct = () => {
   const [products, setProducts] = useState<ProductData[]>([]);

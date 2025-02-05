@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
-import { client } from "@/sanity/lib/client"; // Import the Sanity client
+import { client } from "../sanity/lib/client"; // Import the Sanity client
 import Image from "next/image";
 
 interface Product {

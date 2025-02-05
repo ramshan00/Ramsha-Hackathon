@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
+import { client } from "../../../sanity/lib/client";
+import { urlFor } from "../../../sanity/lib/image";
 import Link from "next/link";
 import Image from "next/image";
-import Navbar from "@/components/Header/page";
-import SignUpSection from "@/components/Signup";
-import { ProductData } from "@/types/ProductType";
+import Navbar from "../../../components/Header/page";
+import SignUpSection from "../../../components/Signup";
+import { ProductData } from "../../../types/ProductType";
 
 interface Category {
     _id: string; // Unique identifier for the category

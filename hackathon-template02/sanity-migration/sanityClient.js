@@ -9,9 +9,9 @@ const client_1 = require("@sanity/client");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 exports.client = (0, client_1.createClient)({
-    projectId: 'rjlk3aki', // Replace with your project ID
+    projectId: 'l2ju9ltx', // Replace with your project ID
     dataset: 'production', // Or your dataset name
     apiVersion: '2025-01-13', // Today's date or latest API version
     useCdn: false, // Disable CDN for real-time updates
-    token: 'skH7s4DSF59Xot3SSDRNON9BHGBa0ka2ks2VzsNMZAsOs058Q27gmHvc2NQKFI6mRuvoKi4t9c1ldMPzDxjdH2wAIJhHqzQ72XmZE5crZYfkpI6Ue96O3ETPIj1RRuxCDqjyQuHidejB8HBZC1lI9HsV5OJa1cKt6M4e3vcH8QTHJGsP6Gw8',
+    token: 'skmUIwfCH28k34hULTxMQPylPy545OYcnWiK9yVKJcdsCI0yHpAXABpt515OzqE9Jf4wKI0MPKRmmLbgIqNOSSULPPXKwbPtr6cdTFtOKuZjRbIKs4OlsfdsprVMg1xINx7Fmr2Xlp8L0W22nYV3mvc7hTQz2Yc10bkfgimY1f9M7F32r8eZ',
 });

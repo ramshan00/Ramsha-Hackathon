@@ -1,4 +1,4 @@
-import Header from "@/components/Header/page";
+import Header from "../../components/Header/page";
 import React from "react";
 import { FaCaretDown } from "react-icons/fa"; // Import React Icons
 

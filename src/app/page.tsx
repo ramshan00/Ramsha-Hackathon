@@ -1,4 +1,4 @@
-import Header from '@/components/Header/page';
+import Header from "../components/Header/page";
 import HeroSection from './Homepage/heroSection';
 import Features from '../components/Features';
 import Listings from './Homepage/listing1';

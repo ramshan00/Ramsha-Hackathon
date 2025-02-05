@@ -1,7 +1,7 @@
 "use client";
 
-import Header from "@/components/Header/page";
-import { Button } from "@/components/ui/button";
+import Header from "../../components/Header/page";
+import { Button } from "../../components/ui/button";
 import { ShoppingCart, Trash2 } from "lucide-react";
 import { useCart } from "../../../context/Cart_Context";
 import Link from "next/link";
